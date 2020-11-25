@@ -5,6 +5,7 @@ import PickerPanel from '../src/PickerPanel';
 import momentGenerateConfig from '../src/generate/moment';
 import zhCN from '../src/locale/zh_CN';
 import '../assets/index.less';
+import './calendar.less';
 
 function dateRender(date: Moment, today: Moment) {
   return (
@@ -29,14 +30,11 @@ export default () => (
         // picker="month"
         generateConfig={momentGenerateConfig}
         dateRender={dateRender}
+        disabledDate={date => date.date() === 10}
       />
     </div>
     <div>
-      <Picker<Moment>
-        locale={zhCN}
-        generateConfig={momentGenerateConfig}
-        dateRender={dateRender}
-      />
+      <Picker<Moment> locale={zhCN} generateConfig={momentGenerateConfig} dateRender={dateRender} />
     </div>
   </div>
 );
