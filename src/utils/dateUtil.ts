@@ -195,11 +195,17 @@ export function getClosingViewDate<DateType>(
 
 /**
  * Loop get date until date match the disabledDate requirement
+ * @param date Start date
+ * @param updateDate Update date function
+ * @param disabledDate Disabled date function
+ * @param callback Callback when get the validate date
+ * @param retry Retry times when match invalidate
  */
 export function getEnabledDate<DateType>(
   date: DateType,
   updateDate: (date: DateType) => DateType,
   disabledDate: undefined | ((date: DateType) => boolean),
+  callback: (date: DateType) => void,
   retry: number = 30,
 ): DateType | null {
   if (retry === 0) {
@@ -208,8 +214,11 @@ export function getEnabledDate<DateType>(
 
   const nextDate = updateDate(date);
   if (disabledDate?.(nextDate)) {
-    return getEnabledDate(nextDate, updateDate, disabledDate, retry - 1);
+    return getEnabledDate(nextDate, updateDate, disabledDate, callback, retry - 1);
   }
+
+  callback(nextDate);
+
   return nextDate;
 }
 

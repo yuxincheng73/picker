@@ -42,32 +42,36 @@ function DatePanel<DateType>(props: DatePanelProps<DateType>) {
     onKeyDown: (event) =>
       createKeyDownHandler(event, {
         onLeftRight: (diff) => {
-          const nextDate = getEnabledDate(
+          getEnabledDate(
             value || viewDate,
             (date) => generateConfig.addDate(date, diff),
             disabledDate,
-            30,
+            (date) => onSelect(date, 'key'),
           );
-          if (nextDate) {
-            onSelect(nextDate, 'key');
-          }
         },
         onCtrlLeftRight: (diff) => {
-          onSelect(generateConfig.addYear(value || viewDate, diff), 'key');
+          getEnabledDate(
+            value || viewDate,
+            (date) => generateConfig.addYear(date, diff),
+            disabledDate,
+            (date) => onSelect(date, 'key'),
+          );
         },
         onUpDown: (diff) => {
-          const nextDate = getEnabledDate(
+          getEnabledDate(
             value || viewDate,
             (date) => generateConfig.addDate(date, diff * WEEK_DAY_COUNT),
             disabledDate,
-            30,
+            (date) => onSelect(date, 'key'),
           );
-          if (nextDate) {
-            onSelect(nextDate, 'key');
-          }
         },
         onPageUpDown: (diff) => {
-          onSelect(generateConfig.addMonth(value || viewDate, diff), 'key');
+          getEnabledDate(
+            value || viewDate,
+            (date) => generateConfig.addMonth(date, diff),
+            disabledDate,
+            (date) => onSelect(date, 'key'),
+          );
         },
         ...keyboardConfig,
       }),
