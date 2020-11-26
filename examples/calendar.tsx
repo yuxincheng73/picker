@@ -31,6 +31,8 @@ export default () => (
         generateConfig={momentGenerateConfig}
         dateRender={dateRender}
         disabledDate={date => date.date() === 10}
+        onSelect={d => console.log('Select:', d.format('YYYY-MM-DD'))}
+        onChange={d => console.log('Change:', d.format('YYYY-MM-DD'))}
       />
     </div>
     <div>

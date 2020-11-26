@@ -193,6 +193,26 @@ export function getClosingViewDate<DateType>(
   }
 }
 
+/**
+ * Loop get date until date match the disabledDate requirement
+ */
+export function getEnabledDate<DateType>(
+  date: DateType,
+  updateDate: (date: DateType) => DateType,
+  disabledDate: undefined | ((date: DateType) => boolean),
+  retry: number = 30,
+): DateType | null {
+  if (retry === 0) {
+    return null;
+  }
+
+  const nextDate = updateDate(date);
+  if (disabledDate?.(nextDate)) {
+    return getEnabledDate(nextDate, updateDate, disabledDate, retry - 1);
+  }
+  return nextDate;
+}
+
 export function formatValue<DateType>(
   value: DateType,
   {
