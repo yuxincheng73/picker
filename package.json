@@ -1,5 +1,5 @@
 {
-  "name": "@yuxincheng73/rc-picker2",
+  "name": "@yuxincheng73/picker",
   "version": "2.5.19",
   "description": "React date & time picker",
   "keywords": [
@@ -16,13 +16,10 @@
     "lib",
     "dist"
   ],
-  "homepage": "https://react-component.github.io/picker",
+  "homepage": "https://github.com/yuxincheng73/picker",
   "repository": {
     "type": "git",
     "url": "https://github.com/yuxincheng73/picker.git"
-  },
-  "bugs": {
-    "url": "http://github.com/react-component/picker/issues"
   },
   "license": "MIT",
   "scripts": {
