@@ -1,5 +1,5 @@
 {
-  "name": "@yuxincheng73/picker",
+  "name": "@yuxincheng73/picker2",
   "version": "2.6.0",
   "description": "React date & time picker",
   "keywords": [
@@ -27,7 +27,6 @@
     "build": "father doc build --storybook",
     "compile": "father build && lessc assets/index.less assets/index.css",
     "gh-pages": "npm run build && father doc deploy",
-    "prepublishOnly": "npm run compile && np --yolo --no-publish",
     "lint": "eslint src/ --ext .ts,.tsx,.jsx,.js,.md",
     "prettier": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "test": "father test",
